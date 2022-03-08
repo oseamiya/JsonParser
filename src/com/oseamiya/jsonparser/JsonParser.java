@@ -87,4 +87,19 @@ public class JsonParser extends AndroidNonvisibleComponent {
           return -1;
       }
     }
+    @SimpleFunction
+    public YailList Keys(String jsonObject){
+        try {
+            JSONObject jsonObject1 = new JSONObject(jsonObject);
+            Iterator<String> iterator = jsonObject1.keys();
+            ArrayList<String> arrayList = new ArrayList<String>();
+            for (Iterator<String> it = iterator; it.hasNext(); ) {
+                arrayList.add(it.next());
+            }
+            return YailList.makeList(arrayList);
+        } catch (JSONException exception){
+            OnException(exception.getMessage(), "Keys");
+            return YailList.makeList(new String[]{});
+        }
+    }
 }
